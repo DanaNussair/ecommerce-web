@@ -10,13 +10,10 @@ function Dropdown({ name, defaultValue, onChange, listOfValues, required }) {
 				className="border-2 border-violet-500 rounded-md p-1 w-full dropdown"
 				onChange={onChange}
 				required={required}
+				defaultValue={defaultValue}
 			>
 				{listOfValues.map((option, index) => (
-					<option
-						key={index}
-						value={option.value}
-						selected={defaultValue == option.value}
-					>
+					<option key={index} value={option.value}>
 						{option.label}
 					</option>
 				))}

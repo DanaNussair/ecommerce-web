@@ -52,6 +52,9 @@ export const FORM_OPTIONS = [
 		fieldType: 'RADIO',
 		defaultValue: '1',
 		required: true,
-		listOfValues: ['Yes', 'No'],
+		listOfValues: [
+			{ value: '1', label: 'Yes' },
+			{ value: '0', label: 'No' },
+		],
 	},
 ];

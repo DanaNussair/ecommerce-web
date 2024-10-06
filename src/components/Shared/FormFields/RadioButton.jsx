@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function RadioButton({ name, onChange, listOfValues }) {
+function RadioButton({ name, onChange, listOfValues, defaultValue }) {
 	return (
 		<div>
 			<label className="font-bold text-violet-500">{name}</label>
@@ -8,12 +8,13 @@ function RadioButton({ name, onChange, listOfValues }) {
 				<div key={index} className="flex gap-2">
 					<input
 						type="radio"
-						id={option}
+						id={option.label}
 						name={name}
-						value={option}
+						value={option.value}
 						onChange={onChange}
+						defaultChecked={defaultValue === option.value}
 					/>
-					<label htmlFor={option}>{option}</label>
+					<label htmlFor={option.label}>{option.label}</label>
 				</div>
 			))}
 		</div>
@@ -29,6 +30,7 @@ RadioButton.propTypes = {
 			label: PropTypes.string,
 		}),
 	),
+	defaultValue: PropTypes.string,
 };
 
 export default RadioButton;

@@ -23,20 +23,20 @@ function FormField({ option: { fieldType, ...rest } }) {
 }
 
 FormField.propTypes = {
-	option: PropTypes.objectOf({
-		fieldType: PropTypes.string,
+	option: PropTypes.shape({
+		fieldType: PropTypes.string.isRequired,
 		label: PropTypes.string,
-		name: PropTypes.string,
+		name: PropTypes.string.isRequired,
 		value: PropTypes.string,
 		onChange: PropTypes.func,
 		type: PropTypes.string,
-		options: PropTypes.arrayOf(
+		listOfValues: PropTypes.arrayOf(
 			PropTypes.shape({
 				value: PropTypes.string,
 				label: PropTypes.string,
 			}),
 		),
-	}),
+	}).isRequired,
 };
 
 export default FormField;
