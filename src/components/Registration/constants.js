@@ -49,6 +49,18 @@ export const FORM_OPTIONS = [
 	},
 	{
 		id: 6,
+		name: 'Gender',
+		fieldType: 'LIST',
+		defaultValue: null,
+		required: true,
+		listOfValues: [
+			{ value: 'female', label: 'Female' },
+			{ value: 'male', label: 'Male' },
+			{ value: 'other', label: 'Other' },
+		],
+	},
+	{
+		id: 7,
 		name: 'Love React?',
 		fieldType: 'RADIO',
 		defaultValue: '1',
