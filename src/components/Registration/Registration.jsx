@@ -20,7 +20,9 @@ function Registration() {
 			name: data.Name,
 			email: data.Email,
 			password: data.Password,
+			gender: data.Gender,
 			role: data.Role,
+			age: data.Age,
 		});
 
 		if (response.error) {
