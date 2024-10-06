@@ -4,6 +4,7 @@ import { useForm, useFormState, useWatch } from 'react-hook-form';
 import Button from '../Shared/Button';
 import FormField from '../Shared/FormFields/FormField';
 import { FORM_OPTIONS } from './constants';
+import { registerUser } from '../Api/User';
 
 function Registration() {
 	const navigate = useNavigate();
@@ -14,8 +15,21 @@ function Registration() {
 	const { errors } = useFormState({ control });
 	useWatch({ control });
 
-	const onSubmit = (data) => {
-		console.log('data: ', data);
+	const onSubmit = async (data) => {
+		const response = await registerUser({
+			name: data.Name,
+			email: data.Email,
+			password: data.Password,
+			role: data.Role,
+		});
+
+		if (response.error) {
+			console.error(response.error);
+			return;
+		} else {
+			console.log('User registered successfully');
+			navigate('/login');
+		}
 	};
 
 	const displayErrors = () => {
