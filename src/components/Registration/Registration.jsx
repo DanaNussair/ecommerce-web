@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, useFormState, useWatch } from 'react-hook-form';
 
 import Button from '../Shared/Button';
 import FormField from '../Shared/FormFields/FormField';
@@ -7,7 +7,34 @@ import { FORM_OPTIONS } from './constants';
 
 function Registration() {
 	const navigate = useNavigate();
-	const { register, handleSubmit, watch, errors } = useForm();
+	const { register, handleSubmit, control } = useForm({
+		mode: 'all',
+	});
+
+	const { errors } = useFormState({ control });
+	useWatch({ control });
+
+	const onSubmit = (data) => {
+		console.log('data: ', data);
+	};
+
+	const displayErrors = () => {
+		if (Object.keys(errors).length === 0) return null;
+		return (
+			<div className="text-red-600">
+				<p>Errors:</p>
+				{FORM_OPTIONS.map((option) => (
+					<div key={option.id}>
+						{errors[option.name] && (
+							<p>
+								{option.name}: {errors[option.name]?.message}
+							</p>
+						)}
+					</div>
+				))}
+			</div>
+		);
+	};
 
 	return (
 		<div className="flex flex-col gap-2 w-1/2">
@@ -16,15 +43,12 @@ function Registration() {
 			</div>
 			<div>
 				<h1>Registration Form</h1>
-				<form className="flex flex-col gap-4" onSubmit={handleSubmit(() => {})}>
+				<form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 					{FORM_OPTIONS.map((option) => (
-						<FormField
-							key={option.id}
-							option={option}
-							{...register(option.name)}
-						/>
+						<FormField key={option.id} option={option} register={register} />
 					))}
-					<Button label="Register" variant="primary" onClick={() => {}} />
+					{displayErrors()}
+					<Button type="submit" label="Register" variant="primary" />
 				</form>
 			</div>
 		</div>

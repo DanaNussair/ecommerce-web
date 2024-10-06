@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 
-function Button({ label, onClick, disabled, variant = 'primary' }) {
+function Button({
+	label,
+	onClick,
+	disabled,
+	type = 'button',
+	variant = 'primary',
+}) {
 	let buttonStyle =
 		'py-1 px-3 font-semibold text-md rounded-full text-center shadow-md cursor-pointer focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75';
 
@@ -16,17 +22,22 @@ function Button({ label, onClick, disabled, variant = 'primary' }) {
 	}
 
 	return (
-		<div className={buttonStyle} disabled={disabled} onClick={onClick}>
-			{label}
-		</div>
+		<input
+			type={type}
+			value={label}
+			className={buttonStyle}
+			disabled={disabled}
+			onClick={onClick}
+		/>
 	);
 }
 
 Button.propTypes = {
 	label: PropTypes.string.isRequired,
-	onClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 	disabled: PropTypes.bool,
 	variant: PropTypes.oneOf(['primary', 'secondary']),
+	type: PropTypes.oneOf(['button', 'submit']),
 };
 
 export default Button;

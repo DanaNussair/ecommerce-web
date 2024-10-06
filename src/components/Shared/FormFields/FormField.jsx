@@ -1,26 +1,30 @@
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
+
 import InputField from './InputField';
 import Dropdown from './Dropdown';
 import RadioButton from './RadioButton';
 
-function FormField({ option: { fieldType, ...rest } }) {
-	switch (fieldType) {
-		case 'TEXT':
-			return <InputField {...rest} />;
-		case 'EMAIL':
-			return <InputField {...rest} type="email" />;
-		case 'PASSWORD':
-			return <InputField {...rest} type="password" />;
-		case 'NUMBER':
-			return <InputField {...rest} type="number" />;
-		case 'LIST':
-			return <Dropdown {...rest} />;
-		case 'RADIO':
-			return <RadioButton {...rest} />;
-		default:
-			return null;
-	}
-}
+const FormField = forwardRef(
+	({ option: { fieldType, ...rest }, ...props }, ref) => {
+		switch (fieldType) {
+			case 'TEXT':
+				return <InputField {...rest} {...props} ref={ref} />;
+			case 'EMAIL':
+				return <InputField {...rest} {...props} type="email" ref={ref} />;
+			case 'PASSWORD':
+				return <InputField {...rest} {...props} type="password" ref={ref} />;
+			case 'NUMBER':
+				return <InputField {...rest} {...props} type="number" ref={ref} />;
+			case 'LIST':
+				return <Dropdown {...rest} {...props} ref={ref} />;
+			case 'RADIO':
+				return <RadioButton {...rest} {...props} ref={ref} />;
+			default:
+				return null;
+		}
+	},
+);
 
 FormField.propTypes = {
 	option: PropTypes.shape({

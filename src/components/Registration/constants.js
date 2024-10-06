@@ -14,8 +14,9 @@ export const FORM_OPTIONS = [
 		fieldType: 'NUMBER',
 		minLength: 1,
 		maxLength: 50,
+		min: 18,
 		defaultValue: '24',
-		required: true,
+		required: false,
 	},
 	{
 		id: 3,
