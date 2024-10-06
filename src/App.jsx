@@ -1,10 +1,10 @@
-import LandingPage from './components/Landing/LandingPage';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 	return (
-		<>
-			<LandingPage />
-		</>
+		<div className="flex flex-col justify-center items-center h-screen">
+			<Outlet />
+		</div>
 	);
 }
 

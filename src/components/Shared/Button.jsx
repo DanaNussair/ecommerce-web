@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 function Button({ label, onClick, disabled, variant = 'primary' }) {
 	let buttonStyle =
-		'py-2 px-5 font-semibold rounded-full shadow-md cursor-pointer focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75';
+		'py-1 px-3 font-semibold text-md rounded-full text-center shadow-md cursor-pointer focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75';
 
 	switch (variant) {
 		case 'primary':
